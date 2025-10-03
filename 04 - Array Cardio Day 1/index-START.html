@@ -38,28 +38,50 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    // const inventors_1500 = inventors.filter((el) => el[3] < 1600 || el[3] >= 1500)
+    const inventors_1500 = inventors.filter((el) => {
+      if (el['year'] < 1600 && el['year'] >= 1500) {
+        return true;
+      } 
+      return false
+    })
+    console.log(JSON.stringify(inventors_1500))
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    const map_array = inventors.map((el) => `${el['first']} ${el['last']}`)
+    console.log(JSON.stringify(map_array))
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const sorted_array = inventors.sort((el1, el2) => el2['year']-el1['year'])
+    console.log(JSON.stringify(sorted_array))
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    console.log(inventors.reduce((prev, cur) => prev + cur.year, 0));
 
     // 5. Sort the inventors by years lived
+    console.log(JSON.stringify(inventors.sort((el1, el2) => (el1.passed-el1.year)-(el2.passed-el2.year))))
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    Array = [ "Boulevard de l'Amiral-Bruix", "Boulevard des Capucines", "Boulevard de la Chapelle", "Boulevard de Clichy", "Boulevard de l'Hôpital", "Boulevard des Italiens", "Boulevard de la Madeleine", "Boulevard de Magenta", "Boulevard Marguerite-de-Rochechouart", "Boulevard de Sébastopol"]
+
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    console.log(inventors.sort((el1, el2) => el1.last < el2.last))
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const result = data.reduce((acc, item) => {
+    acc[item] = (acc[item] || 0) + 1;
+    return acc;
+}, {});
+console.log(result)
 
   </script>
 </body>
